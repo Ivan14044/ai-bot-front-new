@@ -45,8 +45,11 @@ export default {
                     // Apply only when ratio crosses our threshold
                     if (entry.intersectionRatio >= baseThreshold) {
                         hasAppeared = true;
-                        el.classList.add(targetClass);
-                        el.classList.remove('opacity-0', 'translate-y-8');
+                        // Defer class changes to next frame to avoid layout thrash on Safari
+                        requestAnimationFrame(() => {
+                            el.classList.add(targetClass);
+                            el.classList.remove('opacity-0', 'translate-y-8');
+                        });
                         if (once && observer) {
                             observer.unobserve(el);
                             observer.disconnect();
@@ -56,7 +59,8 @@ export default {
                 },
                 {
                     root: null,
-                    threshold: [0, baseThreshold, 0.9999],
+                    // Single threshold reduces callback churn on Safari when crossing boundaries
+                    threshold: [baseThreshold],
                     rootMargin: baseRootMargin
                 }
             );
