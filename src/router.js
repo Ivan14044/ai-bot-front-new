@@ -124,12 +124,14 @@ const router = createRouter({
 
         // 3) Default — ensure layout is ready (Safari/Firefox quirks)
         return new Promise(resolve => {
-            // small timeout helps Safari when fixed header or fonts reflow
+            // Double RAF + timeout for Safari font reflow and header
             setTimeout(() => {
                 requestAnimationFrame(() => {
-                    resolve({ top: 0, left: 0, behavior: 'auto' });
+                    requestAnimationFrame(() => {
+                        resolve({ top: 0, left: 0, behavior: 'auto' });
+                    });
                 });
-            }, 0);
+            }, 10);
         });
     }
 });
