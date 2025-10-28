@@ -101,7 +101,7 @@ const routes = [
 ];
 
 const router = createRouter({
-    history: createWebHistory(),
+    history: createWebHistory('/ai-bot-front-new/'),
     routes,
     scrollBehavior(to, from, savedPosition) {
         // 1) Back/forward — use browser-saved position
