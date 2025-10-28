@@ -1,19 +1,19 @@
 import { createRouter, createWebHistory } from 'vue-router';
-import LoginPage from './components/auth/LoginPage.vue';
-import RegisterPage from './components/auth/RegisterPage.vue';
-import AuthCallback from './components/auth/AuthCallback.vue';
-import MainPage from './pages/MainPage.vue';
-import ProfilePage from './pages/account/ProfilePage.vue';
-import ServicePage from './pages/ServicePage.vue';
-import SubscriptionsPage from './pages/account/SubscriptionsPage.vue';
-import SessionStart from './pages/SessionStart.vue';
-import ForgotPasswordPage from './components/auth/ForgotPasswordPage.vue';
-import ResetPasswordPage from './components/auth/ResetPasswordPage.vue';
-import CheckoutPage from './pages/CheckoutPage.vue';
-import ContentPage from './pages/ContentPage.vue';
-import NotFound from './pages/NotFound.vue';
-import ArticlesAll from './pages/articles/ArticlesAll.vue';
-import ArticleDetails from './pages/articles/ArticleDetails.vue';
+const LoginPage = () => import('./components/auth/LoginPage.vue');
+const RegisterPage = () => import('./components/auth/RegisterPage.vue');
+const AuthCallback = () => import('./components/auth/AuthCallback.vue');
+const MainPage = () => import('./pages/MainPage.vue');
+const ProfilePage = () => import('./pages/account/ProfilePage.vue');
+const ServicePage = () => import('./pages/ServicePage.vue');
+const SubscriptionsPage = () => import('./pages/account/SubscriptionsPage.vue');
+const SessionStart = () => import('./pages/SessionStart.vue');
+const ForgotPasswordPage = () => import('./components/auth/ForgotPasswordPage.vue');
+const ResetPasswordPage = () => import('./components/auth/ResetPasswordPage.vue');
+const CheckoutPage = () => import('./pages/CheckoutPage.vue');
+const ContentPage = () => import('./pages/ContentPage.vue');
+const NotFound = () => import('./pages/NotFound.vue');
+const ArticlesAll = () => import('./pages/articles/ArticlesAll.vue');
+const ArticleDetails = () => import('./pages/articles/ArticleDetails.vue');
 import { useAuthStore } from './stores/auth';
 import { usePageStore } from './stores/pages';
 
@@ -101,7 +101,7 @@ const routes = [
 ];
 
 const router = createRouter({
-    history: createWebHistory(),
+    history: createWebHistory(import.meta.env.BASE_URL),
     routes,
     scrollBehavior(to, from, savedPosition) {
         // 1) Back/forward — use browser-saved position
