@@ -4,7 +4,7 @@ import vueI18n from '@intlify/unplugin-vue-i18n/vite';
 import path from 'node:path';
 
 export default defineConfig({
-    base: process.env.NODE_ENV === 'production' ? '/ai-bot-front-main/' : '/',
+    base: process.env.NODE_ENV === 'production' ? '/ai-bot-front-new/' : '/',
     plugins: [
         vue(),
         vueI18n({
