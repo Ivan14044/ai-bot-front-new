@@ -25,5 +25,5 @@ export default defineConfig({
         outDir: 'dist',
         sourcemap: false
     },
-    base: process.env.NODE_ENV === 'production' ? '/ai-bot-front-new/' : '/'
+    base: '/ai-bot-front-new/'
 });
