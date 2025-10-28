@@ -15,6 +15,7 @@ export default defineConfig({
             '@': path.resolve(__dirname, 'src')
         }
     },
+    base: '/ai-bot-front-new/',
     build: {
         outDir: 'dist',
         sourcemap: false
