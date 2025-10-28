@@ -17,6 +17,7 @@
 
             <div class="relative">
                 <main>
+                    <!-- Page header: back link and breadcrumb -->
                     <div class="max-w-7xl mx-auto mb-5 flex items-center justify-between">
                         <router-link
                             to="/"
@@ -40,18 +41,12 @@
                     </div>
 
                     <div class="max-w-7xl mx-auto">
-                        <div
-                            v-if="service"
-                            class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch"
-                        >
-                            <div class="lg:col-span-4 flex flex-col">
-                                <div
-                                    class="big-hero-card glass-card rounded-3xl p-8 flex-1 flex flex-col justify-between"
-                                >
+                        <div v-if="service" class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+                            <!-- Left sidebar: sticky summary -->
+                            <aside class="lg:col-span-4 flex flex-col">
+                                <div class="big-hero-card glass-card rounded-3xl p-8 flex-1 flex flex-col justify-between lg:sticky lg:top-28">
                                     <div class="flex flex-col items-center gap-4">
-                                        <div
-                                            class="logo-round w-32 h-32 rounded-full flex items-center justify-center shadow-xl"
-                                        >
+                                        <div class="logo-round w-32 h-32 rounded-3xl flex items-center justify-center shadow-xl">
                                             <img
                                                 :src="service.logo"
                                                 :alt="`${getTranslation(service, 'name')} Logo`"
@@ -61,22 +56,29 @@
                                         </div>
 
                                         <div class="text-center">
-                                            <h2 class="text-3xl font-bold">{{ service.name }}</h2>
-                                            <p class="mt-1 text-sm text-dark dark:text-white">
+                                            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-medium tag-soft">
+                                                <span>{{ $t('services.page.recommended') || 'Recommended' }}</span>
+                                            </div>
+                                            <h2 class="mt-3 text-3xl font-extrabold tracking-tight leading-tight">
+                                                {{ getTranslation(service, 'name') || service.name }}
+                                            </h2>
+                                            <p class="mt-1 text-sm text-dark/80 dark:text-white/80">
                                                 {{ getTranslation(service, 'subtitle') }}
                                             </p>
                                         </div>
 
-                                        <div class="text-center text-dark dark:text-white">
-                                            {{ service.amount.toFixed(2) }}
-                                            {{ serviceOption.options.currency.toUpperCase() }}
+                                        <div class="mt-2 text-center">
+                                            <span class="text-3xl font-extrabold leading-none price-gradient">
+                                                {{ service.amount.toFixed(2) }}
+                                            </span>
+                                            <span class="ml-1 text-sm opacity-80 align-top">
+                                                {{ serviceOption.options.currency.toUpperCase() }} / {{ $t('services.page.month') || 'mo' }}
+                                            </span>
                                         </div>
                                     </div>
 
-                                    <div class="w-full mt-4">
-                                        <div
-                                            class="flex flex-col sm:flex-row gap-3 justify-center items-center"
-                                        >
+                                    <div class="w-full mt-6">
+                                        <div class="flex flex-col sm:flex-row gap-3 justify-center items-center">
                                             <!-- Кнопка “Открыть” если подписка активна -->
                                             <button
                                                 v-if="
@@ -153,27 +155,45 @@
                                             </button>
                                         </div>
                                     </div>
+                                    <ul v-if="getTranslation(service, 'bullet_points')" class="mt-6 space-y-2 text-sm list-none">
+                                        <li v-for="(bp, idx) in getTranslation(service, 'bullet_points')" :key="idx" class="flex items-start gap-2">
+                                            <span class="check-badge">✓</span>
+                                            <span class="opacity-90">{{ bp }}</span>
+                                        </li>
+                                    </ul>
                                 </div>
-                            </div>
+                            </aside>
 
-                            <div class="lg:col-span-8 flex flex-col">
-                                <div
-                                    class="info-panel glass-card rounded-3xl p-8 flex-1 flex flex-col justify-between"
-                                >
-                                    <div>
-                                        <h1
-                                            class="text-3xl lg:text-4xl text-dark dark:text-white font-extrabold mb-4 info-heading"
-                                        >
+                            <!-- Right content: rich description -->
+                            <section class="lg:col-span-8 flex flex-col">
+                                <article class="info-panel glass-card rounded-3xl p-8 flex-1">
+                                    <header class="mb-6">
+                                        <h1 class="text-3xl lg:text-4xl text-dark dark:text-white font-extrabold tracking-tight leading-tight">
                                             {{ getTranslation(service, 'name') }}
                                         </h1>
+                                        <p v-if="getTranslation(service, 'subtitle')" class="mt-2 text-dark/70 dark:text-white/70">
+                                            {{ getTranslation(service, 'subtitle') }}
+                                        </p>
+                                    </header>
 
-                                        <div
-                                            class="text-dark dark:text-white mb-4 info-body service-content"
-                                            v-html="getTranslation(service, 'full_description')"
-                                        ></div>
+                                    <div class="prose dark:prose-invert max-w-none service-content" v-html="getTranslation(service, 'full_description')"></div>
+
+                                    <div class="mt-8 grid grid-cols-1 md:grid-cols-3 gap-4">
+                                        <div class="mini-card">
+                                            <div class="mini-card-title">{{ $t('services.page.delivery_time') || 'Delivery' }}</div>
+                                            <div class="mini-card-value">{{ getTranslation(service, 'delivery_time') || 'Instant' }}</div>
+                                        </div>
+                                        <div class="mini-card">
+                                            <div class="mini-card-title">{{ $t('services.page.quality') || 'Quality' }}</div>
+                                            <div class="mini-card-value">{{ getTranslation(service, 'quality') || 'Premium' }}</div>
+                                        </div>
+                                        <div class="mini-card">
+                                            <div class="mini-card-title">{{ $t('services.page.support') || 'Support' }}</div>
+                                            <div class="mini-card-value">24/7</div>
+                                        </div>
                                     </div>
-                                </div>
-                            </div>
+                                </article>
+                            </section>
                         </div>
                     </div>
                 </main>
@@ -357,6 +377,17 @@ watch(
     box-shadow: 0 8px 30px rgba(99, 102, 241, 0.18);
 }
 
+.tag-soft {
+    background: rgba(99,102,241,0.12);
+    border: 1px solid rgba(99,102,241,0.25);
+}
+
+.price-gradient {
+    background: linear-gradient(90deg, #ff6a00, #ff00cc, #00aaff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
 .animated-button {
     position: relative;
     overflow: hidden;
@@ -407,6 +438,29 @@ watch(
 .info-panel {
     background: linear-gradient(180deg, rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0.01));
     border-radius: 24px;
+}
+
+.mini-card {
+    border-radius: 16px;
+    padding: 16px;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.03), rgba(255, 255, 255, 0.01));
+    border: 1px solid rgba(255,255,255,0.06);
+}
+.mini-card-title { font-size: 12px; opacity: .7; }
+.mini-card-value { font-size: 16px; font-weight: 600; margin-top: 2px; }
+
+.check-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 18px;
+    height: 18px;
+    border-radius: 9999px;
+    background: rgba(16, 185, 129, 0.15);
+    color: #10b981;
+    font-size: 12px;
+    line-height: 1;
+    margin-top: 2px;
 }
 
 .animated-gradient {

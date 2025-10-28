@@ -182,15 +182,96 @@ button.swal2-cancel {
 }
 
 .glass-card {
-    backdrop-filter: blur(10px);
-    background: rgba(255, 255, 255, 0.2);
-    border: 1px solid rgba(255, 255, 255, 0.06);
+    position: relative;
+    backdrop-filter: saturate(140%) blur(20px);
+    -webkit-backdrop-filter: saturate(140%) blur(20px);
+    background: linear-gradient(
+        180deg,
+        rgba(255, 255, 255, 0.20),
+        rgba(255, 255, 255, 0.10)
+    );
+    border: 1px solid rgba(255, 255, 255, 0.22);
+    box-shadow:
+        0 8px 24px rgba(2, 6, 23, 0.18),
+        inset 0 1px 0 rgba(255, 255, 255, 0.35);
+    border-radius: 20px;
+    transition: box-shadow 200ms ease, transform 200ms ease, background-color 200ms ease;
+}
+.glass-card:hover {
+    box-shadow:
+        0 10px 30px rgba(2, 6, 23, 0.22),
+        inset 0 1px 0 rgba(255, 255, 255, 0.45);
+    transform: translateY(-1px);
+}
+
+.dark .glass-card {
+    background: linear-gradient(
+        180deg,
+        rgba(17, 24, 39, 0.35),
+        rgba(17, 24, 39, 0.20)
+    );
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow:
+        0 10px 32px rgba(0, 0, 0, 0.45),
+        inset 0 1px 0 rgba(255, 255, 255, 0.06);
 }
 
 .glass-button {
+    position: relative;
+    backdrop-filter: saturate(160%) blur(16px);
+    -webkit-backdrop-filter: saturate(160%) blur(16px);
+    background: linear-gradient(
+        180deg,
+        rgba(255, 255, 255, 0.35),
+        rgba(255, 255, 255, 0.18)
+    );
+    border: 1px solid rgba(255, 255, 255, 0.28);
+    box-shadow:
+        0 6px 18px rgba(2, 6, 23, 0.12),
+        inset 0 1px 0 rgba(255, 255, 255, 0.55);
+    transition: box-shadow 200ms ease, transform 200ms ease, background-color 200ms ease;
+}
+.glass-button:hover {
+    box-shadow:
+        0 8px 22px rgba(2, 6, 23, 0.18),
+        inset 0 1px 0 rgba(255, 255, 255, 0.65);
+    transform: translateY(-0.5px);
+}
+.dark .glass-button {
+    background: linear-gradient(
+        180deg,
+        rgba(17, 24, 39, 0.45),
+        rgba(17, 24, 39, 0.28)
+    );
+    border: 1px solid rgba(255, 255, 255, 0.10);
+    box-shadow:
+        0 8px 22px rgba(0, 0, 0, 0.40),
+        inset 0 1px 0 rgba(255, 255, 255, 0.07);
+}
+
+/* Additional iOS-like glass utilities */
+.glass-surface {
+    backdrop-filter: saturate(140%) blur(18px);
+    -webkit-backdrop-filter: saturate(140%) blur(18px);
+    background: linear-gradient(180deg, rgba(255,255,255,0.18), rgba(255,255,255,0.10));
+    border: 1px solid rgba(255,255,255,0.18);
+    border-radius: 16px;
+}
+.dark .glass-surface {
+    background: linear-gradient(180deg, rgba(17,24,39,0.40), rgba(17,24,39,0.26));
+    border: 1px solid rgba(255,255,255,0.08);
+}
+.glass-chip {
     backdrop-filter: blur(10px);
-    background: rgba(255, 255, 255, 0.2);
-    border: 1px solid rgba(255, 255, 255, 0.08);
+    -webkit-backdrop-filter: blur(10px);
+    background: rgba(255,255,255,0.30);
+    border: 1px solid rgba(255,255,255,0.35);
+    border-radius: 9999px;
+    padding: 6px 10px;
+}
+.dark .glass-chip {
+    background: rgba(17,24,39,0.50);
+    border-color: rgba(255,255,255,0.10);
 }
 
 .cta-button {
