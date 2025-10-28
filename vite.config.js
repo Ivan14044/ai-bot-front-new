@@ -25,5 +25,14 @@ export default defineConfig({
         outDir: 'dist',
         sourcemap: false
     },
-    base: '/ai-bot-front-new/'
+    base: '/ai-bot-front-new/',
+    server: {
+        proxy: {
+            '/api': {
+                target: 'http://localhost:8000',
+                changeOrigin: true,
+                secure: false
+            }
+        }
+    }
 });

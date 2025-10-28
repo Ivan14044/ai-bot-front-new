@@ -1,7 +1,7 @@
 <template>
     <div
         v-intersect="{ class: 'animate-fade-in-up', once: true, threshold: 0.05, rootMargin: '0px 0px -50% 0px' }"
-        class="section-container max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pointer-events-none min-h-screen flex align-center mt-[50px] lg:mt-0"
+        class="section-container max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 min-h-screen flex align-center mt-[50px] lg:mt-0"
     >
         <!-- Hero Section -->
         <section id="hero" class="bg-transparent absolute top-0 left-0 px-[15px] md:static md:px-0">
@@ -13,7 +13,7 @@
         <section id="savings">
             <div class="text-center mb-8 relative z-2">
                 <h2
-                    class="text-[32px] md:text-[48px] lg:text-[64px]m text-gray-900 dark:text-white mt-3 leading-none"
+                    class="text-[32px] md:text-[48px] lg:text-[64px] text-gray-900 dark:text-white mt-3 leading-none"
                     v-html="$t('savings.title')"
                 ></h2>
             </div>
@@ -32,7 +32,7 @@
         <section id="steps">
             <div class="text-center mb-8 relative z-2">
                 <h2
-                    class="text-[32px] md:text-[48px] lg:text-[64px]m text-gray-900 dark:text-white mt-3 leading-none"
+                    class="text-[32px] md:text-[48px] lg:text-[64px] text-gray-900 dark:text-white mt-3 leading-none"
                     v-html="$t('steps.title')"
                 ></h2>
             </div>

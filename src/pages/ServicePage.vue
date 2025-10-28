@@ -88,7 +88,7 @@
                                                     )
                                                 "
                                                 class="animated-button relative px-8 py-2.5 rounded-full font-medium transition-all duration-300 overflow-hidden flex items-center justify-center gap-2 btn-success"
-                                                @click="openService()"
+                                                @click="openService(service.id)"
                                             >
                                                 {{ $t('plans.open') }}
                                             </button>
@@ -102,7 +102,7 @@
                                                     'btn-primary': !isAdded
                                                 }"
                                                 :aria-pressed="isAdded"
-                                                aria-label="Add service"
+                                                :aria-label="$t('plans.add_to_cart')"
                                                 type="button"
                                                 @click.stop="onAdd()"
                                             >

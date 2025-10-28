@@ -7,14 +7,18 @@
             </h1>
         </div>
 
-        <div class="dark:text-gray-300" v-html="pageStore.page[locale].content"></div>
+        <div class="dark:text-gray-300" v-html="safeContent"></div>
     </div>
 </template>
 
 <script setup lang="ts">
 import { usePageStore } from '@/stores/pages';
 import { useI18n } from 'vue-i18n';
+import { computed } from 'vue';
+import { sanitizeHtml } from '@/utils/sanitize';
 
 const pageStore = usePageStore();
 const { locale } = useI18n();
+
+const safeContent = computed(() => sanitizeHtml(pageStore.page?.[locale.value]?.content ?? ''));
 </script>

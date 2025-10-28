@@ -38,7 +38,7 @@
                 :key="subscription.id"
                 class="space-y-2 mb-2"
             >
-                <div class="d-flex align-center gap-3 flex-wrap service-item">
+                <div class="flex items-center gap-3 flex-wrap border-b border-gray-300 dark:border-gray-600 pb-2">
                     <div class="flex-1 min-w-[200px]">
                         <div class="flex justify-between items-start">
                             <div>
@@ -55,7 +55,7 @@
                                 ></h3>
                                 <h4
                                     v-if="getServiceSubtitle(subscription.service_id)"
-                                    class="text-sm text-gray-600 dark:!text-gray-300 font-medium mb-1 mt-0 lh-1"
+                                    class="text-sm text-gray-600 dark:!text-gray-300 font-medium mb-1 mt-0 leading-tight"
                                     v-text="getServiceSubtitle(subscription.service_id)"
                                 ></h4>
                                 <p
@@ -259,10 +259,5 @@ const toggleAutoRenew = async function (id, isAutoRenew) {
     height: 100px;
     padding: 10px;
     width: 124px;
-}
-
-.service-item {
-    border-bottom: 1px solid gray;
-    padding-bottom: 10px;
 }
 </style>

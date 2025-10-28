@@ -41,7 +41,7 @@
                     </div>
 
                     <div class="prose prose-neutral dark:prose-invert max-w-none relative">
-                        <div class="content" v-html="article.content"></div>
+                        <div class="content" v-html="safeContent"></div>
                         <div class="text-xs text-gray-500 dark:text-gray-300 my-4 float-end">
                             {{ formatDate(article.date) }}
                         </div>
@@ -60,6 +60,7 @@ import { useArticlesStore } from '../../stores/articles';
 import BackLink from '../../components/layout/BackLink.vue';
 import ImageWithFallback from '../../components/ImageWithFallback.vue';
 import type { Category } from '../../types/article';
+import { sanitizeHtml } from '../../utils/sanitize';
 
 const route = useRoute();
 const router = useRouter();
@@ -94,6 +95,8 @@ const article = computed(() => {
 });
 
 const articleImage = computed(() => article.value?.img ?? '/img/no-logo.png');
+
+const safeContent = computed(() => sanitizeHtml(article.value?.content ?? ''));
 
 function resolveCategoryName(category: Category): string {
     const current = locale.value;

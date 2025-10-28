@@ -247,7 +247,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted, computed, watch } from 'vue';
+import { ref, onMounted, computed, watch, onBeforeUnmount } from 'vue';
 import { useRouter } from 'vue-router';
 import { useI18n } from 'vue-i18n';
 import { useToast } from 'vue-toastification';
@@ -368,6 +368,9 @@ const servicesSummary = computed(() => {
     return parts.join(', ');
 });
 
+let pageshowHandler: ((event: PageTransitionEvent) => void) | null = null;
+let visibilityHandler: (() => void) | null = null;
+
 onMounted(() => {
     loadingStore.stop();
 
@@ -380,20 +383,22 @@ onMounted(() => {
         }
     }
 
-    window.addEventListener('pageshow', event => {
+    pageshowHandler = (event: PageTransitionEvent) => {
         const nav = performance.getEntriesByType('navigation')[0] as
             | PerformanceNavigationTiming
             | undefined;
-        if (event.persisted || nav?.type === 'back_forward') {
+        if ((event as any).persisted || nav?.type === 'back_forward') {
             loadingStore.stop();
         }
-    });
+    };
+    window.addEventListener('pageshow', pageshowHandler as EventListener);
 
-    document.addEventListener('visibilitychange', () => {
+    visibilityHandler = () => {
         if (document.visibilityState === 'visible') {
             loadingStore.stop();
         }
-    });
+    };
+    document.addEventListener('visibilitychange', visibilityHandler);
 
     const query = new URLSearchParams(window.location.search);
     if (query.get('success') === 'true') {
@@ -403,6 +408,17 @@ onMounted(() => {
         router.replace({ path: '/' }).then(() => {
             toast.success(t('checkout.success'));
         });
+    }
+});
+
+onBeforeUnmount(() => {
+    if (pageshowHandler) {
+        window.removeEventListener('pageshow', pageshowHandler as EventListener);
+        pageshowHandler = null;
+    }
+    if (visibilityHandler) {
+        document.removeEventListener('visibilitychange', visibilityHandler);
+        visibilityHandler = null;
     }
 });
 

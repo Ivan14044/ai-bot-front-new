@@ -58,6 +58,8 @@
                     ]"
                     :disabled="btn === '...' || isLoading"
                     @click="btn !== '...' && goToPage(Number(btn))"
+                    :aria-current="btn === currentPage ? 'page' : undefined"
+                    :aria-label="btn === currentPage ? t('articles.pagination_current', { page: btn }) : t('articles.pagination_go_to', { page: btn })"
                 >
                     {{ btn }}
                 </button>
@@ -72,6 +74,16 @@
                     →
                 </button>
             </div>
+        </div>
+        <div v-else>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 xl:gap-6">
+                <div v-for="i in 8" :key="i" class="rounded-2xl border border-black/10 dark:border-white/10 p-4 animate-pulse">
+                    <div class="aspect-video rounded-lg bg-black/10 dark:bg-white/10 mb-3"></div>
+                    <div class="h-4 bg-black/10 dark:bg-white/10 rounded w-3/4 mb-2"></div>
+                    <div class="h-3 bg-black/10 dark:bg-white/10 rounded w-1/2"></div>
+                </div>
+            </div>
+            <p class="text-center text-gray-600 dark:text-gray-300 mt-8">{{ $t('articles.empty') }}</p>
         </div>
     </div>
 </template>

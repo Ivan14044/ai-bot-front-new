@@ -89,14 +89,14 @@ const routes = [
         meta: { requiresAuth: true }
     },
     {
+        path: '/404',
+        component: NotFound
+    },
+    {
         path: '/:slug(.*)*',
         name: 'dynamic',
         component: ContentPage,
         meta: { isDynamic: true }
-    },
-    {
-        path: '/404',
-        component: NotFound
     }
 ];
 
