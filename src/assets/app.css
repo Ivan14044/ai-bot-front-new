@@ -89,8 +89,27 @@ html, body {
     overflow-x: hidden;
 }
 
+/* Safari can stutter/jump with global smooth scroll; disable globally */
 html {
+    scroll-behavior: auto;
+}
+
+/* Enable smooth only where explicitly needed via a class */
+.smooth-scroll {
     scroll-behavior: smooth;
+}
+
+/* Account for fixed header when navigating to anchors */
+:target,
+[id] {
+    scroll-margin-top: 70px;
+}
+
+/* Reduce iOS Safari viewport resize jumps when address bar hides/shows */
+html, body {
+    height: 100%;
+    overscroll-behavior-y: contain;
+    -webkit-text-size-adjust: 100%;
 }
 
 button.swal2-confirm {

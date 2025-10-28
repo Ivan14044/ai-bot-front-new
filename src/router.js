@@ -117,18 +117,19 @@ const router = createRouter({
             return false;
         }
 
-        // 2) Anchors — scroll to element
+        // 2) Anchors — scroll to element (avoid smooth for Safari)
         if (to.hash) {
             return { el: to.hash, top: 0, left: 0, behavior: 'auto' };
         }
 
-        // 3) Default — ensure layout is ready (Firefox quirk)
+        // 3) Default — ensure layout is ready (Safari/Firefox quirks)
         return new Promise(resolve => {
-            requestAnimationFrame(() => {
+            // small timeout helps Safari when fixed header or fonts reflow
+            setTimeout(() => {
                 requestAnimationFrame(() => {
                     resolve({ top: 0, left: 0, behavior: 'auto' });
                 });
-            });
+            }, 0);
         });
     }
 });
