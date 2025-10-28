@@ -4,7 +4,7 @@
     >
         <div class="text-center flex flex-col items-center justify-start card-optimized">
             <div class="access-icon mb-4">
-                <img src="/img/emoji-star.png" class="max-h-[40px] max-w-[40px]" alt="Access" />
+                <img src="/img/emoji-star.png" class="max-h-[40px] max-w-[40px]" alt="Access" loading="lazy" decoding="async" />
             </div>
             <h3 class="text-[20px] mb-6 dark:text-white">{{ $t('promote.access.title') }}</h3>
             <p class="text-gray-500 dark:text-gray-400 leading-5">
@@ -13,7 +13,7 @@
         </div>
         <div class="text-center flex flex-col items-center justify-start card-optimized">
             <div class="pricing-icon mb-4">
-                <img src="/img/emoji-cash.png" class="max-h-[40px] max-w-[40px]" alt="Pricing" />
+                <img src="/img/emoji-cash.png" class="max-h-[40px] max-w-[40px]" alt="Pricing" loading="lazy" decoding="async" />
             </div>
             <h3 class="text-[20px] mb-6 dark:text-white">{{ $t('promote.pricing.title') }}</h3>
             <p class="text-gray-500 dark:text-gray-400 leading-5">
@@ -22,7 +22,7 @@
         </div>
         <div class="text-center flex flex-col items-center justify-start card-optimized">
             <div class="refund-icon mb-4">
-                <img src="/img/emoji-hands.png" class="max-h-[40px] max-w-[40px]" alt="Refund" />
+                <img src="/img/emoji-hands.png" class="max-h-[40px] max-w-[40px]" alt="Refund" loading="lazy" decoding="async" />
             </div>
             <h3 class="text-[20px] mb-6 dark:text-white">{{ $t('promote.refund.title') }}</h3>
             <p class="text-gray-500 dark:text-gray-400 leading-5">
@@ -35,6 +35,8 @@
                     src="/img/emoji-roket.png"
                     class="max-h-[40px] max-w-[40px]"
                     alt="Activation"
+                    loading="lazy"
+                    decoding="async"
                 />
             </div>
             <h3 class="text-[20px] mb-6 dark:text-white">
@@ -46,7 +48,7 @@
         </div>
         <div class="text-center flex flex-col items-center justify-start card-optimized">
             <div class="support-icon mb-4">
-                <img src="/img/emoji-proger.png" class="max-h-[40px] max-w-[40px]" alt="Support" />
+                <img src="/img/emoji-proger.png" class="max-h-[40px] max-w-[40px]" alt="Support" loading="lazy" decoding="async" />
             </div>
             <h3 class="text-[20px] mb-6 dark:text-white">
                 {{ $t('promote.support.title') }}
@@ -57,7 +59,7 @@
         </div>
         <div class="text-center flex flex-col items-center justify-start card-optimized">
             <div class="payment-icon mb-4">
-                <img src="/img/emoji-card.png" class="max-h-[40px] max-w-[40px]" alt="Payment" />
+                <img src="/img/emoji-card.png" class="max-h-[40px] max-w-[40px]" alt="Payment" loading="lazy" decoding="async" />
             </div>
             <h3 class="text-[20px] mb-6 dark:text-white">
                 {{ $t('promote.payment.title') }}

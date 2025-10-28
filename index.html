@@ -10,11 +10,21 @@
 
     <script>
       (function () {
+        const root = document.documentElement;
+        // Dark mode pre-render toggle
         const savedTheme = localStorage.getItem('theme');
         const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
         const isDark = savedTheme === 'dark' || (!savedTheme && prefersDark);
+        root.classList.toggle('dark', isDark);
 
-        document.documentElement.classList.toggle('dark', isDark);
+        // iOS 100vh fix: set --vh to correct value
+        function setVh() {
+          const vh = window.innerHeight * 0.01;
+          root.style.setProperty('--vh', `${vh}px`);
+        }
+        setVh();
+        window.addEventListener('resize', setVh, { passive: true });
+        window.addEventListener('orientationchange', setVh, { passive: true });
       })();
     </script>
 </head>

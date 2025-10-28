@@ -135,6 +135,8 @@ body {
     /* Оптимизация рендеринга */
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    /* Используем css-переменную для 100vh на iOS */
+    min-height: calc(var(--vh, 1vh) * 100);
 }
 
 button.swal2-confirm {
@@ -228,6 +230,25 @@ button.swal2-cancel {
     transform: translateZ(0);
     -webkit-transform: translateZ(0);
     contain: layout style paint;
+}
+
+/* Fallback, если backdrop-filter не поддерживается */
+@supports not ((-webkit-backdrop-filter: blur(10px)) or (backdrop-filter: blur(10px))) {
+    .glass-card,
+    .glass-button {
+        background: rgba(255, 255, 255, 0.85);
+        border-color: rgba(0, 0, 0, 0.06);
+    }
+}
+
+/* Предпочтение уменьшенной анимации для Safari/iOS */
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        animation-duration: 0.001ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.001ms !important;
+        scroll-behavior: auto !important;
+    }
 }
 
 .cta-button {
