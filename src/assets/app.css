@@ -292,3 +292,28 @@ button.swal2-cancel {
     backface-visibility: hidden;
     transform: translate3d(0, 0, 0);
 }
+
+/* КРИТИЧЕСКОЕ ИСПРАВЛЕНИЕ - Предотвращение перерисовки при скролле */
+* {
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+}
+
+/* Оптимизация для всех секций */
+section {
+    contain: layout style paint;
+    transform: translateZ(0);
+    -webkit-transform: translateZ(0);
+}
+
+/* Оптимизация для всех div с контентом */
+div {
+    will-change: auto;
+}
+
+/* Предотвращение флаша при скролле */
+.v-card, [class*="card"] {
+    contain: layout style paint;
+    transform: translateZ(0);
+    -webkit-transform: translateZ(0);
+}
